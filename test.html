@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <link rel="stylesheet" href="test.css">
+    <title>UAS MOB WEB</title>
+</head>
+<link rel="stylesheet" href="test.css">
+
+<body>
+    <img src="tabungan.jpg" alt="Tabungan" class="imgres">
+
+    <div class="container-fluid text-center heading">
+        <p></p>
+        <h1>Tabungan Sederhana</h1>
+        <p></p>
+    </div>
+
+    <div class="text-center">
+        <div class="input">
+            Nama:
+            <input class="inputData" type="text" placeholder="Input disini!" id="inputNama">
+            <p></p>
+            Usia:
+            <input class="inputData" type="text" placeholder="Input disini!" id="inputUsia">
+            <p></p>
+            Uang Awal:
+            <input class="inputData" type="text" placeholder="Input disini!" id="inputUA">
+            <p></p>
+            Suku Bunga per Tahun:
+            <input class="inputData" type="text" placeholder="Input disini!" id="inputBunga">
+            <p></p>
+            Lama penyimpanan ( dalam tahun ):
+            <input class="inputData" type="text" placeholder="Input disini!" id="inputLamaSimpan">
+            <p></p>
+            <button class="inputData" id="inputBtn">Selesai</button>
+            <p></p>
+        </div>
+    </div>
+
+    <img src="tabungan2.jpg" alt="Tabungan2" class="imgres">
+    <p></p>
+    <div class="text-center">Gunawan, Novita Wati (26416061)</div>
+    <p></p>
+
+    <script>
+        let input = document.getElementById('input');
+        let tab;
+
+        document.addEventListener('DOMContentLoaded', init);
+
+        function init() {
+            worker = new tab('test.js');
+            worker.addEventListener('message', tabMessaged);
+            worker.addEventListener('error', tabError);
+
+
+            document.body.addEventListener('click', () => {
+                tab.postMessage({ 'do': 'fetch' });
+            })
+        }
+
+        function tabMessaged(ev) {
+            let data = ev.data;
+
+            output.textContent += JSON.stringify(data, null, 2) + '\n';
+        }
+
+        function tabError(err) {
+            console.log(err.message, err.filename);
+        }
+
+    </script>
+
+    <script src="test.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

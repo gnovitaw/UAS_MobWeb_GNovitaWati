@@ -1,0 +1,12 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgb(9, 9, 56);
+    color:white;
+   
+}
+.imgres {
+        width: 100%;
+        height: auto;
+}
